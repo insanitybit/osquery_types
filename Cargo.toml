@@ -5,6 +5,9 @@ authors = ["Insanitybit <insanitybit@gmail.com>"]
 edition = "2018"
 
 description = "Common structures for OSQuery tables"
+license = "MIT"
+keywords = ["osquery", "grapl"]
+
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
