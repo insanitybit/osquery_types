@@ -3,95 +3,95 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
-struct ProcessEventColumns<'a> {
+pub struct ProcessEventColumns<'a> {
     /// "uid": "0",
-    uid: &'a str,
+    pub uid: &'a str,
 
     /// "time": "1527895541",
-    time: &'a str,
+    pub time: &'a str,
 
     /// "pid": "30219",
-    pid: &'a str,
+    pub pid: &'a str,
 
     /// "path": "/usr/bin/curl",
-    path: &'a str,
+    pub path: &'a str,
 
     /// "auid": "1000",
-    auid: &'a str,
+    pub auid: &'a str,
 
     /// "cmdline": "curl google.com",
-    cmdline: &'a str,
+    pub cmdline: &'a str,
 
     /// "ctime": "1503452096",
-    ctime: &'a str,
+    pub ctime: &'a str,
 
     /// "cwd": "",
-    cwd: &'a str,
+    pub cwd: &'a str,
 
     /// "egid": "0",
-    egid: &'a str,
+    pub egid: &'a str,
 
     /// "euid": "0",
-    euid: &'a str,
+    pub euid: &'a str,
 
     /// "gid": "0",
-    gid: &'a str,
+    pub gid: &'a str,
 
     /// "parent": ""
-    parent: &'a str,
+    pub parent: &'a str,
 }
 
 #[derive(Serialize, Deserialize)]
-struct ProcessEvent<'a> {
+pub struct ProcessEvent<'a> {
     ///   "action": "added" OR "removed",
-    action: &'a str,
+    pub action: &'a str,
 
     /// "unixTime": 1527895550,
     #[serde(alias = "unixTime")]
-    unix_time: u64,
+    pub unix_time: u64,
 
     /// "columns": {//see ProcessEventColumns},
-    columns: ProcessEventColumns<'a>,
+    pub columns: ProcessEventColumns<'a>,
 
     /// "hostIdentifier": "vagrant",
     #[serde(alias = "hostIdentifier")]
-    host_identifier: &'a str,
+    pub host_identifier: &'a str,
 
     #[serde(borrow)]
-    decorations: Option<HashMap<&'a str, &'a str>>,
+    pub decorations: Option<HashMap<&'a str, &'a str>>,
 }
 
 #[derive(Serialize, Deserialize)]
-struct SocketEventColumns<'a> {
-    time: &'a str,
-    success: &'a str,
-    remote_port: &'a str,
-    action: &'a str,
-    auid: &'a str,
-    family: &'a str,
-    local_address: &'a str,
-    local_port: &'a str,
-    path: &'a str,
-    pid: &'a str,
-    remote_address: &'a str,
+pub struct SocketEventColumns<'a> {
+    pub time: &'a str,
+    pub success: &'a str,
+    pub remote_port: &'a str,
+    pub action: &'a str,
+    pub auid: &'a str,
+    pub family: &'a str,
+    pub local_address: &'a str,
+    pub local_port: &'a str,
+    pub path: &'a str,
+    pub pid: &'a str,
+    pub remote_address: &'a str,
     #[serde(borrow)]
-    decorations: Option<HashMap<&'a str, &'a str>>,
+    pub decorations: Option<HashMap<&'a str, &'a str>>,
 }
 
 #[derive(Serialize, Deserialize)]
-struct SocketEvent<'a> {
-    columns: SocketEventColumns<'a>,
+pub struct SocketEvent<'a> {
+    pub columns: SocketEventColumns<'a>,
 
     #[serde(alias = "unixTime")]
-    unix_time: u64,
+    pub unix_time: u64,
     #[serde(alias = "hostIdentifier")]
-    host_identifier: &'a str,
+    pub host_identifier: &'a str,
 }
 
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "name")]
-enum Event<'a> {
+pub enum Event<'a> {
     #[serde(rename = "process_events")]
     #[serde(borrow)]
     ProcessEvent(ProcessEvent<'a>),
